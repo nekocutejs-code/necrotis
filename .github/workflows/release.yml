@@ -1,0 +1,26 @@
+# Publishes a GitHub release whenever release/update.txt changes on main.
+# The tag is v<version> taken from update.txt; the assets are release/Necrotis.exe and release/update.txt.
+name: Publish release
+on:
+  push:
+    branches: [main]
+    paths: ['release/update.txt']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VER=$(grep '^version=' release/update.txt | cut -d= -f2)
+          NOTES=$(grep '^notes=' release/update.txt | cut -d= -f2- | tr '|' '\n')
+          if gh release view "v$VER" >/dev/null 2>&1; then
+            gh release upload "v$VER" release/Necrotis.exe release/update.txt --clobber
+          else
+            gh release create "v$VER" release/Necrotis.exe release/update.txt --title "Necrotis v$VER" --notes "$NOTES" --latest
+          fi

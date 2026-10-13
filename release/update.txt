@@ -1,0 +1,6 @@
+NECROTIS-UPDATE 1
+version=1.1.5
+size=5517312
+sha512=00e6ebe3530a10479d6d5e194b11e226bebe68134d3a0e9f04e488c8480720d0ea28b15d820b83ce805ec607c1e97063417bc10f311fad33ae897a5d26df071d
+notes=Автообновление через GitHub|Лобби до 8 игроков, ставки в казино, наблюдатель
+sig=fb27be140d0d58c77e60a17a2277c1f254d3755bf97d17e3d884962f6a752842789c6938ada852590fe4bffb7bd0865a827b16c5fb5b0ab7dc5852f016e3ba0b
